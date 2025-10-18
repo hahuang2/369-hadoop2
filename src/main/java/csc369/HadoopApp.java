@@ -109,13 +109,6 @@ public class HadoopApp {
 	    job.setOutputValueClass(CountryUrlCount.OUTPUT_VALUE_CLASS);
 	    FileInputFormat.addInputPath(job, new Path(otherArgs[1]));
 	    FileOutputFormat.setOutputPath(job, new Path(otherArgs[2]));
-	}else if ("SumCountryUrl".equalsIgnoreCase(otherArgs[0])) {
-	    job.setReducerClass(SumCountryUrl.ReducerImpl.class);
-	    job.setMapperClass(SumCountryUrl.MapperImpl.class);
-	    job.setOutputKeyClass(SumCountryUrl.OUTPUT_KEY_CLASS);
-	    job.setOutputValueClass(SumCountryUrl.OUTPUT_VALUE_CLASS);
-	    FileInputFormat.addInputPath(job, new Path(otherArgs[1]));
-	    FileOutputFormat.setOutputPath(job, new Path(otherArgs[2]));
 	}else if ("SortCountryAZ".equalsIgnoreCase(otherArgs[0])) {
 	    job.setReducerClass(SortCountryAZ.ReducerImpl.class);
 	    job.setMapperClass(SortCountryAZ.MapperImpl.class);
