@@ -1,0 +1,68 @@
+Part 1(CountryJoin):
+
+rm -rf countryjoin/join_output countryjoin/sum_output countryjoin/sort_output
+mkdir -p countryjoin
+./gradlew run --args="HostCountryJoin hostname_country input_access_log countryjoin/join_output"
+./gradlew run --args="Sum countryjoin/join_output countryjoin/sum_output"
+./gradlew run --args="SortDes countryjoin/sum_output countryjoin/sort_output"
+
+cat countryjoin/sort_output/part-r-00000 | head -10
+
+
+Output:
+Unknown Location        812
+Intranet        198
+Canada  127
+United States   87
+Robot   80
+Israel  19
+Australia       17
+France  16
+Wherever You Want to Ship       13
+Germany 13
+
+Part 2(CountryUrlJoin): 
+
+
+rm -rf countryurljoin/join_output countryurljoin/sum_output countryurljoin/sort_output
+mkdir -p countryurljoin
+./gradlew run --args="HostCountryUrlJoin hostname_country input_access_log countryurljoin/join_output"
+./gradlew run --args="CountryUrlCount countryurljoin/join_output countryurljoin/sum_output"
+./gradlew run --args="SortCountryAZ countryurljoin/sum_output countryurljoin/sort_output"
+
+cat countryurljoin/sort_output/part-r-00000 | head -10
+
+Output:
+Australia       /mailman/listinfo       2
+Australia       /twiki/bin/view/Main/SpamAssassinAndPostFix     2
+Australia       /twiki/bin/view/Main/SpamAssassinDeleting       2
+Australia       /twiki/bin/view/Main/SpamAssassinTaggingOnly    1
+Australia       /twiki/pub/TWiki/TWikiLogos/twikiRobot46x50.gif 1
+Australia       /icons/PythonPowered.png        1
+Australia       /twiki/bin/view/Main/WebHome    1
+Australia       /icons/gnu-head-tiny.jpg        1
+Australia       /icons/mailman.jpg      1
+Australia       /mailman        1
+
+
+
+Part 3(urlcountryjoin):
+
+rm -rf urlcountryjoin/join_output urlcountryjoin/agg_output
+mkdir -p urlcountryjoin
+./gradlew run --args="UrlCountryList hostname_country input_access_log urlcountryjoin/join_output"
+./gradlew run --args="UrlCountryAgg urlcountryjoin/join_output urlcountryjoin/agg_output"
+
+cat urlcountryjoin/agg_output/part-r-00000 | head -10
+
+Output:
+/       Canada, France, Intranet, Israel, Netherlands, Robot, United Kingdom, United States, Unknown Location, Wherever You Want to Ship
+/AmavisNew.html United States, Unknown Location
+/DCC.html       United Kingdom, Unknown Location
+/LateEmail.html Canada, United States, Unknown Location
+/M83A   Taiwan
+/MSOffice/cltreq.asp?UL=1&ACT=4&BUILD=2614&STRMVER=4&CAPREQ=0   Unknown Location
+/RBL.html       Canada, Unknown Location
+/SpamAssassin.html      Canada, Germany, Israel, Netherlands, United States, Unknown Location
+/_vti_bin/owssvr.dll?UL=1&ACT=4&BUILD=2614&STRMVER=4&CAPREQ=0   Unknown Location
+/antivirus.html Unknown Location
